@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>KeffTech</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <img src="https://raw.githubusercontent.com/kefftech-labs/KeffTech-/f0ce68cd07dca25dab22f26cf2cc364b638dbff7/00B22785-4743-4AF3-AB30-C1BF085C1064.png" class="logo">
+    <nav>
+      <a href="#">Produits</a>
+      <a href="#">Comment ça marche</a>
+      <a href="#">Connexion</a>
+    </nav>
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* HEADER */
+.header {
+  background: #111;
+  padding: 15px 0;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+}
+
+nav a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+nav a:hover {
+  opacity: 1;
+}
+
+/* HERO */
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1a1a, #000);
+}
+
+.hero-content h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  padding: 15px 30px;
+  border: none;
+  background: #00ff99;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.hero button:hover {
+  background: #00cc77;
+}
+
+<header class="header">
+  <div class="container">
+    <img src="https://raw.githubusercontent.com/kefftech-labs/KeffTech-/f0ce68cd07dca25dab22f26cf2cc364b638dbff7/00B22785-4743-4AF3-AB30-C1BF085C1064.png" class="logo">
+
+    <nav>
+      <a href="#">Trocks & Services</a>
+      <a href="#">Vendre</a>
+      <a href="#">Profil</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+
+    <h1>Acheter & vendre intelligemment</h1>
+
+    <!-- BARRE DE RECHERCHE -->
+    <div class="search-box">
+      <input type="text" placeholder="Rechercher un produit...">
+      <button>Rechercher</button>
+    </div>
+
+    <!-- CTA PRINCIPAL -->
+    <div class="cta-buttons">
+      <button class="buy">Acheter</button>
+      <button class="sell">Vendre</button>
+    </div>
+
+.search-box {
+  margin: 20px 0;
+}
+
+.search-box input {
+  padding: 12px;
+  width: 250px;
+  border: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-box button {
+  padding: 12px;
+  border: none;
+  background: #00ff99;
+  cursor: pointer;
+}
+
+.cta-buttons {
+  margin-top: 20px;
+}
+
+.cta-buttons button {
+  padding: 15px 25px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.buy {
+  background: #00ff99;
+}
+
+.sell {
+  background: #0099ff;
+  color: white;
+}
+
+
+</section>
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Trouve. Clique. Gagne.</h1>
+    <p>Le bot qui trouve les meilleurs deals pendant que tu respires.</p>
+    <button>Tester maintenant</button>
+  </div>
+
+
+<script>
+const sources = [
+  {
+    nom: "AliExpress",
+    produits: [
+      { titre: "Lampe LED RGB", prix: 12, lien: "#", image: "https://via.placeholder.com/100" },
+      { titre: "Casque Bluetooth", prix: 25, lien: "#", image: "https://via.placeholder.com/100" }
+    ]
+  },
+  {
+    nom: "IKEA",
+    produits: [
+      { titre: "Chaise design", prix: 60, lien: "#", image: "https://via.placeholder.com/100" }
+    ]
+  },
+  {
+    nom: "Temu",
+    produits: [
+      { titre: "Gadget cuisine", prix: 8, lien: "#", image: "https://via.placeholder.com/100" }
+    ]
+  }
+];
+
+function rechercher() {
+  const input = document.querySelector("input").value.toLowerCase();
+  let resultats = [];
+
+  sources.forEach(source => {
+    source.produits.forEach(p => {
+      if (p.titre.toLowerCase().includes(input)) {
+        resultats.push({
+          ...p,
+          source: source.nom
+        });
+      }
+    });
+  });
+
+  afficher(resultats);
+}
+
+function afficher(produits) {
+  const zone = document.getElementById("results");
+  zone.innerHTML = "";
+
+  produits.forEach(p => {
+    const prixFinal = (p.prix * 1.15).toFixed(2);
+
+    zone.innerHTML += `
+      <div class="card">
+        <img src="${p.image}">
+        <h3>${p.titre}</h3>
+        <p>${p.source}</p>
+        <button onclick="acheter('${p.lien}')">
+          Acheter - $${prixFinal}
+        </button>
+      </div>
+    `;
+  });
+}
+
+function acheter(lien) {
+  console.log("Redirection affiliée vers :", lien);
+  window.open(lien, "_blank");
+}
+</script>
+
+<input type="text" placeholder="Rechercher..." onkeyup="rechercher()">
+<div id="results">
+</div>
+
+</section>
+</body>
+</html>
